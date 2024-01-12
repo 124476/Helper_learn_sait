@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр</title>
+    <style>
+        .btn {
+            list-style: none; margin:0
+            background: #D5D5D5
+            height: 500px;
+            border: 1px solid #666;
+            width: 10em; /* Ширина кнопки */
+            border: 2px solid #000000; /* Параметры рамки */
+            font:16px/25px "v_CCAdamKubert", sans-serif; /* Размер текста */
+            display: inline-block; /* Строчно-блочный элемент */
+            background: #ffffff; /* Серый цвет фона */
+            color: #000; /* Белый цвет текста */
+            text-decoration: none;
+            padding: 1rem 1.5rem; /* Поля вокруг текста */
+            border-radius: 3px; /* Скругляем уголки */
+            margin-bottom: 1em; /* Расстояние снизу */
+           }
+        .footer {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+        }
+        .footer form {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="footer">
+        <form action="">
+            <input id="txt" style="
+                font-size: 2em;
+                height: 1em;">
+            <textarea id="txt2" style="height:450px;"></textarea>
+            <div>
+                <a href="index.html" charset=utf-8" class="btn">Удалить</a>
+                <a href="index.html" charset=utf-8" class="btn">Сохранить</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function getXmlHttp() {
+    var xmlhttp;
+    try {
+        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (E) {
+            xmlhttp = false;
+        }
+    }
+    if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+var txtt = '';
+
+(function () {
+    var xmlhttp = getXmlHttp();
+    xmlhttp.open('GET', 'spisok.txt', false);
+    xmlhttp.send(null);
+    if (xmlhttp.status == 200) {
+        var response = xmlhttp.responseText;
+        txtt = response;
+    }
+})();
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const greetingValue = urlParams.get('greeting');
+a = greetingValue.split('$$$$$$$$$$')
+document.getElementById("txt").value = a[0];
+document.getElementById("txt2").value = a[1];
+</script>
+</body>
+</html>
